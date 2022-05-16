@@ -10,6 +10,7 @@ namespace Employee
     {
         public void AttendanceCheck()
         {
+            int empWagePerHour = 20, empHours, dailyWage;
             Random value=new Random();
             int randomCheck=value.Next(2);
 
@@ -18,11 +19,17 @@ namespace Employee
                 case 0:
                     {
                         Console.WriteLine("Employee is Absent");
+                        empHours = 0;
+                        dailyWage = empHours * empWagePerHour;
+                        Console.WriteLine("Employee dailywage is:" + dailyWage);
                         break;
                     }
                 case 1:
                     {
                         Console.WriteLine("Employee is Present");
+                        empHours = 8;
+                        dailyWage = empHours * empWagePerHour;
+                        Console.WriteLine("Employee dailywage is:" + dailyWage);
                         break;
                     }
             }
