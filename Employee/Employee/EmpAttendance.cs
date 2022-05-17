@@ -8,40 +8,40 @@ namespace Employee
 {
     internal class EmpAttendance
     {
-        public void AttendanceCheck()
+        public void WageForMonth()
         {
-            int empWagePerHour = 20, empHours, dailyWage;
+            int empWagePerHour = 20, empWorkDaysMonth=20, empHours, dailyWage;
+            int totalWorkingDays = 0,totalSalary=0,salaryForDay;
             Random value=new Random();
-            int randomCheck=value.Next(3);
-            Console.WriteLine("Generated random value is:" + randomCheck);
 
-            switch(randomCheck)
+            for(int days=1;days< empWorkDaysMonth; days++)
             {
-                case 1:
-                    {
-                        Console.WriteLine("Employee is working Part Time");
-                        empHours = 4;
-                        dailyWage = empHours * empWagePerHour;
-                        Console.WriteLine("Employee wage is:" + dailyWage);
-                        break;
-                    }
-                case 2:
-                    {
-                        Console.WriteLine("Employee is working Full Time");
-                        empHours = 8;
-                        dailyWage = empHours * empWagePerHour;
-                        Console.WriteLine("Employee wage is:" + dailyWage);
-                        break;
-                    }
-                default:
-                    {
-                        Console.WriteLine("Employee is Absent");
-                        empHours = 0;
-                        dailyWage = empHours * empWagePerHour;
-                        Console.WriteLine("Employee wage is:" + dailyWage);
-                        break;
-                    }
+                int randomCheck = value.Next(3);
+               // Console.WriteLine("Generated random value is:" + randomCheck);
+
+                switch (randomCheck)
+                {
+                    case 1:// For Part Time
+                        {
+                            empHours = 4;
+                            break;
+                        }
+                    case 2: // For Full Time
+                        {
+                            empHours = 8;
+                            break;
+                        }
+                    default: // For Absent
+                        {
+                            empHours = 0;
+                            break;
+                        }     
+                }
+                salaryForDay = empHours * empWagePerHour;
+                totalSalary = totalSalary + salaryForDay;
             }
+                Console.WriteLine("Monthly salary of an Employee is:" + totalSalary);
+
         }
     }
 }

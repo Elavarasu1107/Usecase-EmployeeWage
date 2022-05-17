@@ -7,7 +7,7 @@ namespace Employee
         public static void Main(String[] args)
         {
             EmpAttendance getMethod=new EmpAttendance();
-            getMethod.AttendanceCheck();
+            getMethod.WageForMonth();
         }
     }
 }
