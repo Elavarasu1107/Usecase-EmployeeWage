@@ -8,16 +8,16 @@ namespace Employee
 {
     internal class EmpAttendance
     {
-        public void WageForMonth()
+        public void WageForMonth(int empWagePerHour, int empWorkDaysPerMonth, int maxWorkingHours)
         {
-            int empWagePerHour = 20, empWorkDaysPerMonth=20, empHours, salaryForDay;
-            int totalWorkingDays=0, totalSalary=0,totalWorkingHours=0;
-            Random value=new Random();
+            int empHours, salaryForDay;
+            int totalWorkingDays = 0, totalSalary = 0, totalWorkingHours = 0;
+            Random value = new Random();
 
-            for(int i=totalWorkingDays; i < empWorkDaysPerMonth; i++)
+            for (int i = totalWorkingDays; i < empWorkDaysPerMonth; i++)
             {
-               if(i< empWorkDaysPerMonth && totalWorkingHours<100)
-               {
+                if (i < empWorkDaysPerMonth && totalWorkingHours < maxWorkingHours)
+                {
                     int randomCheck = value.Next(3);
                     //Console.WriteLine("Generated random value is:" + randomCheck);
 
@@ -39,11 +39,11 @@ namespace Employee
                                 break;
                             }
                     }
-                    totalWorkingDays = i+1;
+                    totalWorkingDays = i + 1;
                     salaryForDay = empHours * empWagePerHour;
                     totalSalary = totalSalary + salaryForDay;
-                    totalWorkingHours=totalWorkingHours + empHours;
-               }
+                    totalWorkingHours = totalWorkingHours + empHours;
+                }
             }
             Console.WriteLine("Total Working Days of an Employee is:" + totalWorkingDays);
             Console.WriteLine("Total Working Hours of an Employee is:" + totalWorkingHours);
