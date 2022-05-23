@@ -6,15 +6,14 @@ namespace Employee
     {
         public static void Main(String[] args)
         {
-            EmpAttendance getMethod = new EmpAttendance();
-            Console.WriteLine("Employee Wage for Company A:");
-            getMethod.WageForMonth(20, 20, 100);
+            EmpWage companyA = new EmpWage("CompanyA",20,20,100);
+            EmpWage companyB = new EmpWage("CompanyB", 40, 22, 95);
+            companyA.WageForMonth();
+            Console.WriteLine(companyA.toString());
             Console.WriteLine();
-            Console.WriteLine("Employee Wage for Company B:");
-            getMethod.WageForMonth(40, 25, 80);
-            Console.WriteLine();
-            Console.WriteLine("Employee Wage for Company C:");
-            getMethod.WageForMonth(60, 15, 90);
+            companyB.WageForMonth();
+            Console.WriteLine(companyB.toString());
+
         }
     }
 }
