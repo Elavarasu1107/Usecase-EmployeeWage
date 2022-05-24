@@ -6,31 +6,34 @@ using System.Threading.Tasks;
 
 namespace Employee
 {
-    internal class EmpWageBuilderArray
+    internal class EmpWageBuilder : IComputeEmpWage
     {
         public const int IS_PART_TIME = 1, IS_FULL_TIME = 2;
-        private int numOfCompany = 0;
-        private CompanyEmpWage[] companyEmpWageArray;
+        private LinkedList<CompanyEmpWage> companyEmpWageList;
+        private Dictionary<string, CompanyEmpWage> companyToEmpWageMap;
 
-        public EmpWageBuilderArray()
+        public EmpWageBuilder()
         {
-            this.companyEmpWageArray = new CompanyEmpWage[5];
+            this.companyEmpWageList = new LinkedList<CompanyEmpWage>();
+            this.companyToEmpWageMap = new Dictionary<string, CompanyEmpWage>();
         }
 
         public void addCompanyEmpWage(string company, int empWagePerHour, int empWorkDaysPerMonth, int maxWorkingHours)
         {
-            companyEmpWageArray[this.numOfCompany] = new CompanyEmpWage(company, empWagePerHour, empWorkDaysPerMonth, maxWorkingHours);
-            numOfCompany++;
+            CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empWagePerHour, empWorkDaysPerMonth, maxWorkingHours);
+            this.companyEmpWageList.AddLast(companyEmpWage);
+            this.companyToEmpWageMap.Add(company, companyEmpWage);
+
         }
         public void computeEmpWage()
         {
-            for (int i = 0; i < numOfCompany; i++)
+            foreach (CompanyEmpWage companyEmpWage in this.companyEmpWageList)
             {
-                companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArray[i]));
-                Console.WriteLine(this.companyEmpWageArray[i].toString());
+                companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
+                Console.WriteLine(companyEmpWage.toString());
             }
         }
-        public int computeEmpWage(CompanyEmpWage companyEmpWage)
+        private int computeEmpWage(CompanyEmpWage companyEmpWage)
         {
             int empHours, totalEmpHrs = 0;
             int totalWorkingDays = 0;
@@ -64,6 +67,11 @@ namespace Employee
                 Console.WriteLine("Day:" + totalWorkingDays + " Emp Hrs: " + empHours);
             }
             return totalEmpHrs * companyEmpWage.empWagePerHour;
+        }
+
+        public int getTotalWage(string company)
+        {
+            return this.companyToEmpWageMap[company].totalSalary;
         }
     }
 }

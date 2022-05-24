@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Employee
 {
+    public interface IComputeEmpWage
+    {
+        public void addCompanyEmpWage(string company, int empWagePerHour, int empWorkDaysPerMonth, int maxWorkingHours);
+        public void computeEmpWage();
+        public int getTotalWage(string company);
+    }
     public class CompanyEmpWage
     {
         public string company;
@@ -17,6 +23,7 @@ namespace Employee
             this.empWagePerHour = empWagePerHour;
             this.empWorkDaysPerMonth = empWorkDaysPerMonth;
             this.maxWorkingHours = maxWorkingHours;
+            this.totalSalary = 0;
         }
         public void setTotalEmpWage(int totalSalary)
         {
